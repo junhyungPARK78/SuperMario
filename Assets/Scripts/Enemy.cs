@@ -74,8 +74,8 @@ public class Enemy : MonoBehaviour
                 if (dist <= 0.5f) // 서로의 거리가 0.5f 이내인 경우만 머리 위쪽에서 내려와 충돌했다고 판단
                 {
                     isDead = true;
-                    col.rigidbody2D.velocity = Vector2.zero; // 마리오의 가속 변수를 초기화
-                    col.rigidbody2D.AddForce(Vector2.up * 400f); // 적캐릭터와 충돌하는 순간 다시 위쪽으로 살짝 점프시킨다.
+                    col.GetComponent<Rigidbody2D>().velocity = Vector2.zero; // 마리오의 가속 변수를 초기화
+                    col.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 400f); // 적캐릭터와 충돌하는 순간 다시 위쪽으로 살짝 점프시킨다.
                     
                     // 트윈 함수를 이용해 적캐릭터의 알파값을 0.05초 동안 투명하게 만들되 6회 반복시켜, 사라졌다 나타났다를 반복하게 한다.
 					// setLoopPingPong() 옵션은 알파값이 1 ~ 0으로 변하면 다시 0 ~ 1로 자동으로 되돌아가게 해준다.

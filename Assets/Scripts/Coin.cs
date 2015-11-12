@@ -12,7 +12,7 @@ public class Coin : MonoBehaviour
 	{
         isDead = false;
         sprite.enabled = true; // 스프라이트 렌더러를 다시 켜준다.
-        rigidbody2D.AddForce(new Vector2(Random.Range(-0.3f, 0.3f), 1f) * 400f); // Y축은 1f이므로 위쪽 방향 X축은 -0.3f ~ 0.3f까지 랜덤한 방향으로 동전을 날려준다.
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-0.3f, 0.3f), 1f) * 400f); // Y축은 1f이므로 위쪽 방향 X축은 -0.3f ~ 0.3f까지 랜덤한 방향으로 동전을 날려준다.
         Invoke("DestroyCoin", 5.0f); // 마리오가 먹지 못하면 5초 후에 동전을 다시 비활성화 시킨다.
 	}
 
@@ -25,7 +25,7 @@ public class Coin : MonoBehaviour
         {
             if (!isDead) // 동전이 살아있는 상태면
             {
-                audio.Play(); // 동전에 연결된 먹는 소리 플레이
+                GetComponent<AudioSource>().Play(); // 동전에 연결된 먹는 소리 플레이
                 sprite.enabled = false; // 스프라이트를 꺼서 보이지 않게 한다.
                 CancelInvoke("DestroyCoin"); // 기존에 실행되고 있던 Invoke가 있으면 취소시킨다.
                 Invoke("DestroyCoin", 0.5f); // 0.5초 후에 코인을 비활성화 한다. 동전 먹는 소리가 다 연주될때까지 기다리기 위함이다.
